@@ -6,8 +6,8 @@ const permissionSchema = new mongoose.Schema({
     required: true,
   },
   is_Default: {
-    type: String,
-    default: "not default ", //default
+    type: Boolean,
+    default: false, // better than string
   },
 });
 

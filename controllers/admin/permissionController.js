@@ -20,18 +20,16 @@ const addPermission = async (req, res) => {
     let obj = {
       permission_name,
     };
-    if (req.body.is_default) {
-      obj.is_default = req.body.is_default;
+    if (req.body.is_Default) {
+      obj.is_Default = req.body.is_Default;
     }
 
     const newPermission = await Permission.create(obj);
-    return res
-      .status(200)
-      .json({
-        success: true,
-        msg: "permission name is added sussfully",
-        data: newPermission,
-      });
+    return res.status(200).json({
+      success: true,
+      msg: "permission name is added sussfully",
+      data: newPermission,
+    });
   } catch (error) {
     return res.status(500).json({ success: false, msg: error.message });
   }
