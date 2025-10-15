@@ -35,4 +35,23 @@ const addPermission = async (req, res) => {
   }
 };
 
-export { addPermission };
+const getPermission = async (req, res) => {
+  try {
+    const permissions = await Permission.findById({});
+    return res.status(200).json({
+      success: true,
+      permissions,
+      msg: "permissions fetched successfully !",
+    });
+  } catch (error) {
+    return res.status(500).json({ success: false, msg: error.message });
+  }
+};
+
+const deletPermission = async (req, res) => {
+  try {
+  } catch (error) {
+    return res.status(500).json({ success: false, msg: error.message });
+  }
+};
+export { addPermission, getPermission, deletPermission };

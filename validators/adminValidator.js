@@ -9,4 +9,8 @@ const permissionAddValidator = () => {
   ];
 };
 
-export { permissionAddValidator };
+const permissionDeleteValidator = () => {
+  return [body("id").trim().notEmpty().withMessage("id is required")];
+};
+
+export { permissionAddValidator, permissionDeleteValidator };
