@@ -7,6 +7,10 @@ const PORT = process.env.PORT || 8000;
 
 app.use(express.json());
 app.use(express.static("public"));
+
+import authroutes from "./routes/authRoutes.js";
+app.use("/api", authroutes);
+
 // mongo db connection
 mongoose
   .connect(process.env.MONGO_URI)
@@ -22,3 +26,5 @@ mongoose
     console.log("mongo db connected sussfully :", error);
     process.exit(1);
   });
+// import authroutes from "./routes/authRoutes.js";
+// app.use("/api", authroutes);
