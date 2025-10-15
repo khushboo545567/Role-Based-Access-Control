@@ -4,6 +4,7 @@ import { User } from "../models/userModel.js";
 import bcrypt from "bcrypt";
 import { validationResult } from "express-validator";
 import jwt from "jsonwebtoken";
+import { Suspense } from "react";
 
 const userRegsiter = async (req, res) => {
   try {
@@ -32,7 +33,7 @@ const userRegsiter = async (req, res) => {
       .status(201)
       .json({ success: true, msg: "user registered successfull", user });
   } catch (error) {
-    return res.status(500).json({ success: false, msg: error.msg });
+    return res.status(500).json({ success: false, msg: error.message });
   }
 };
 
@@ -82,4 +83,20 @@ const login = async (req, res) => {
   }
 };
 
-export { userRegsiter, login };
+const getProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.user?._id).select("-password");
+    if (!user) {
+      return res
+        .status(400)
+        .json({ success: false, msg: "user do not exists" });
+    }
+    return res
+      .status(200)
+      .json({ success: true, user, msg: "user get successfully " });
+  } catch (error) {
+    return res.status(500).json({ success: false, msg: error.message });
+  }
+};
+
+export { userRegsiter, login, getProfile };
