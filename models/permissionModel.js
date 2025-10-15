@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { Types } from "mysql2";
 
 const permissionSchema = new mongoose.Schema({
   permission_name: {
@@ -12,4 +11,4 @@ const permissionSchema = new mongoose.Schema({
   },
 });
 
-export const Userpermission = mongoose.model("Permission", permissionSchema);
+export const Permission = mongoose.model("Permission", permissionSchema);
