@@ -4,7 +4,6 @@ import { User } from "../models/userModel.js";
 import bcrypt from "bcrypt";
 import { validationResult } from "express-validator";
 import jwt from "jsonwebtoken";
-import { use } from "react";
 
 const userRegsiter = async (req, res) => {
   try {
@@ -73,10 +72,14 @@ const login = async (req, res) => {
     return res
       .status(200)
       .cookie("token", token, options)
-      .json({ success: true, msg: "user logged in sussfully" });
+      .json({
+        success: true,
+        msg: "user logged in sussfully",
+        user: { name: user.name, email: user.email, role: user.role },
+      });
   } catch (error) {
     return res.status(500).json({ success: false, msg: error.message });
   }
 };
 
-export { userRegsiter };
+export { userRegsiter, login };

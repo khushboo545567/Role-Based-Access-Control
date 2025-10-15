@@ -23,4 +23,21 @@ const userResgisterValidator = () => {
   ];
 };
 
-export { userResgisterValidator };
+const loginValidator = () => {
+  return [
+    body("email")
+      .trim()
+      .notEmpty()
+      .withMessage("email is required")
+      .isEmail()
+      .withMessage("email is invalid"),
+    body("password")
+      .trim()
+      .notEmpty()
+      .withMessage("password is required")
+      .isLength({ min: 8 })
+      .withMessage("password is atleast minimum of 8 character"),
+  ];
+};
+
+export { userResgisterValidator, loginValidator };

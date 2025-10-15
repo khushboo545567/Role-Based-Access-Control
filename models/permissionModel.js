@@ -1,20 +1,15 @@
 import mongoose from "mongoose";
+import { Types } from "mysql2";
 
-const permissionSchema = new mongoose.Schema(
-  {
-    user_id: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: "User",
-    },
-    permissions: [
-      {
-        permissionName: String,
-        permissionValue: [String], //0->create , 1->read, 2->edit , 3->delete
-      },
-    ],
+const permissionSchema = new mongoose.Schema({
+  permission_name: {
+    type: String,
+    required: true,
   },
-  { timestamps: true }
-);
+  is_Default: {
+    type: String,
+    default: "not default ", //default
+  },
+});
 
-export const Permission = mongoose.model("Permission", permissionSchema);
+export const Userpermission = mongoose.model("Permission", permissionSchema);
