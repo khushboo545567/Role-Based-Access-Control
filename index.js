@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 const app = express();
 const PORT = process.env.PORT || 8000;
 
+app.use(express.json());
 app.use(express.static("public"));
 // mongo db connection
 mongoose
