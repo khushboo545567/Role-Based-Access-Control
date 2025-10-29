@@ -21,9 +21,18 @@ const permissionUpdateValidator = () => {
       .withMessage("permission name is requierd"),
   ];
 };
+const catogeryAddValidator = () => {
+  return [
+    body("catogery_name")
+      .trim()
+      .notEmpty()
+      .withMessage("catogery_name is required !"),
+  ];
+};
 
 export {
   permissionAddValidator,
   permissionDeleteValidator,
   permissionUpdateValidator,
+  catogeryAddValidator,
 };

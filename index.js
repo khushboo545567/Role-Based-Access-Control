@@ -19,6 +19,9 @@ app.use("/api", authroutes);
 import adminroute from "./routes/adminRoutes.js";
 app.use("/api/admin", adminroute);
 
+// common route
+import commonroute from "./routes/commonRoutes.js";
+app.use("/api/common", commonroute);
 // mongo db connection
 mongoose
   .connect(process.env.MONGO_URI)
