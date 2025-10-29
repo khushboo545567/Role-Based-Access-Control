@@ -1,7 +1,16 @@
 import { Router } from "express";
 import { veryJWT } from "../middlewares/authMiddleware.js";
-import { catogeryAddValidator } from "../validators/adminValidator.js";
-import { addCatogery, getCatogery } from "../controllers/catogeryController.js";
+import {
+  catogeryAddValidator,
+  catogeryDeleteValidator,
+  catogeryUpdateValidator,
+} from "../validators/adminValidator.js";
+import {
+  addCatogery,
+  deleteCatogery,
+  getCatogery,
+  updateCatogery,
+} from "../controllers/catogeryController.js";
 
 const router = Router();
 router
@@ -9,4 +18,11 @@ router
   .post(veryJWT, catogeryAddValidator(), addCatogery);
 
 router.route("/get-catogery").get(veryJWT, getCatogery);
+router
+  .route("/delete-catogery")
+  .post(veryJWT, catogeryDeleteValidator(), deleteCatogery);
+
+router
+  .route("/update-catogery")
+  .post(veryJWT, catogeryUpdateValidator(), updateCatogery);
 export default router;
