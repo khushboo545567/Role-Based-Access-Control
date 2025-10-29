@@ -95,11 +95,22 @@ const updateCatogery = async (req, res) => {
 
     const { id, catogery_name } = req.body;
     const isExists = await Catogery.findById(id);
-
     if (!isExists) {
       return res
         .status(400)
         .json({ success: false, msg: "catogery not found" });
+    }
+    const isExistsName = await Catogery.findOne({
+      catName: { $regex: catogery_name, $options: "i" },
+    });
+
+    if (!isExistsName) {
+      return res
+        .status(400)
+        .json({
+          success: false,
+          msg: "catogery is already assigned to another catogery ",
+        });
     }
 
     // 3️⃣ Check if there is **actually any change**

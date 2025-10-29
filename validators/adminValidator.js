@@ -43,6 +43,23 @@ const catogeryUpdateValidator = () => {
   ];
 };
 
+const postCreateValidator = () => {
+  return [
+    body("title")
+      .trim()
+      .notEmpty()
+      .withMessage("Title is required!")
+      .isLength({ min: 5 })
+      .withMessage("The title should be at least 5 characters long."),
+    body("description")
+      .trim()
+      .notEmpty()
+      .withMessage("description is required!")
+      .isLength({ min: 10 })
+      .withMessage("The desciption should be at least 5 characters long."),
+  ];
+};
+
 export {
   permissionAddValidator,
   permissionDeleteValidator,
@@ -50,4 +67,5 @@ export {
   catogeryAddValidator,
   catogeryDeleteValidator,
   catogeryUpdateValidator,
+  postCreateValidator,
 };

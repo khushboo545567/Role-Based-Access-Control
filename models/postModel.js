@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { Catogery } from "./catogeryModel";
 
 const postSchema = new mongoose.Schema(
   {
@@ -10,9 +11,12 @@ const postSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    catogery: {
-      type: Array,
-    },
+    catogery: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: Catogery,
+      },
+    ],
   },
   { timestamps: true }
 );
