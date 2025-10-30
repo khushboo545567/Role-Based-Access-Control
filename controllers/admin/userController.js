@@ -2,6 +2,7 @@ import { validationResult } from "express-validator";
 import { User } from "../../models/userModel";
 import bcrypt from "bcrypt";
 import Randomstring from "randomstring";
+import { sendMail } from "../../utils/mail";
 
 const createUser = async (req, res) => {
   try {
@@ -32,6 +33,12 @@ const createUser = async (req, res) => {
     }
 
     const user = await User.create(obj);
+
+    // send the mail
+    const content = `<p>Hii <b>${user.name}</b> your account is created below is your details to login in to the app.</p> <p>Name: ${user.name}</p>  <p>Email: ${user.email}</p> <p>Password: ${password}</p>`;
+
+    sendMail(user.email, "account created", content);
+
     return res
       .status(200)
       .json({ success: true, msg: "user created successfully ", user });
