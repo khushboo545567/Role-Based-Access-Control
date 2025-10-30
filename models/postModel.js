@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { Catogery } from "./catogeryModel";
+import { Catogery } from "./catogeryModel.js";
 
 const postSchema = new mongoose.Schema(
   {

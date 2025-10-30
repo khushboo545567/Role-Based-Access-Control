@@ -5,6 +5,8 @@ import {
   catogeryDeleteValidator,
   catogeryUpdateValidator,
   postCreateValidator,
+  postDeleteValidator,
+  postUpdateValidator,
 } from "../validators/adminValidator.js";
 import {
   addCatogery,
@@ -12,7 +14,12 @@ import {
   getCatogery,
   updateCatogery,
 } from "../controllers/catogeryController.js";
-import { createPost, getPosts } from "../controllers/postController.js";
+import {
+  createPost,
+  deltePosts,
+  getPosts,
+  updatePosts,
+} from "../controllers/postController.js";
 
 const router = Router();
 router
@@ -31,4 +38,6 @@ router
 // post routes
 router.route("/create-post").post(veryJWT, postCreateValidator(), createPost);
 router.route("/get-posts").get(veryJWT, getPosts);
+router.route("/delete-posts").post(veryJWT, postDeleteValidator(), deltePosts);
+router.route("/update-posts").post(veryJWT, postUpdateValidator(), updatePosts);
 export default router;

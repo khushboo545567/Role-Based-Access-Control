@@ -1,5 +1,6 @@
 import { body } from "express-validator";
 
+// permission validator
 const permissionAddValidator = () => {
   return [
     body("permission_name")
@@ -21,6 +22,9 @@ const permissionUpdateValidator = () => {
       .withMessage("permission name is requierd"),
   ];
 };
+
+// catogery validator
+
 const catogeryAddValidator = () => {
   return [
     body("catogery_name")
@@ -43,6 +47,7 @@ const catogeryUpdateValidator = () => {
   ];
 };
 
+// post validator
 const postCreateValidator = () => {
   return [
     body("title")
@@ -60,6 +65,13 @@ const postCreateValidator = () => {
   ];
 };
 
+const postDeleteValidator = () => {
+  return [body("id").trim().notEmpty().withMessage("post id is required")];
+};
+
+const postUpdateValidator = () => {
+  return [body("id").trim().notEmpty().withMessage("post id is required")];
+};
 export {
   permissionAddValidator,
   permissionDeleteValidator,
@@ -68,4 +80,6 @@ export {
   catogeryDeleteValidator,
   catogeryUpdateValidator,
   postCreateValidator,
+  postDeleteValidator,
+  postUpdateValidator,
 };
