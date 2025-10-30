@@ -3,6 +3,7 @@ import {
   permissionAddValidator,
   permissionDeleteValidator,
   permissionUpdateValidator,
+  storeRoleValidator,
 } from "../validators/adminValidator.js";
 import {
   addPermission,
@@ -12,6 +13,7 @@ import {
 } from "../controllers/admin/permissionController.js";
 import { veryJWT } from "../middlewares/authMiddleware.js";
 import { roleAccess } from "../middlewares/adminMiddleware.js";
+import { storeRoles, getRoles } from "../controllers/roleController.js";
 
 const router = Router();
 router
@@ -38,4 +40,10 @@ router
     permissionUpdateValidator(),
     updatePermission
   );
+
+// role routes
+router.route("/get-roles").get(veryJWT, roleAccess("admin"), getRoles);
+router
+  .route("/store-roles")
+  .post(veryJWT, roleAccess("admin"), storeRoleValidator(), storeRoles);
 export default router;

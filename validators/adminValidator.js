@@ -72,6 +72,14 @@ const postDeleteValidator = () => {
 const postUpdateValidator = () => {
   return [body("id").trim().notEmpty().withMessage("post id is required")];
 };
+
+// roles route
+const storeRoleValidator = () => {
+  return [
+    body("role_name").trim().notEmpty().withMessage("post id is required"),
+    body("value").trim().notEmpty().withMessage("post id is required"),
+  ];
+};
 export {
   permissionAddValidator,
   permissionDeleteValidator,
@@ -82,4 +90,5 @@ export {
   postCreateValidator,
   postDeleteValidator,
   postUpdateValidator,
+  storeRoleValidator,
 };
