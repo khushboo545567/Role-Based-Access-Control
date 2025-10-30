@@ -21,6 +21,7 @@ import {
   getPosts,
   updatePosts,
 } from "../controllers/postController.js";
+import { createUser } from "../controllers/admin/userController.js";
 
 const router = Router();
 router
