@@ -87,7 +87,7 @@ const createUserValidator = () => {
       .trim()
       .notEmpty()
       .withMessage("post id is required")
-      .length({ min: 3 })
+      .isLength({ min: 3 })
       .withMessage("name should be of min length 5"),
     body("email").isEmail().withMessage("this should be email"),
   ];

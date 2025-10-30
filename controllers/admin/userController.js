@@ -1,8 +1,8 @@
 import { validationResult } from "express-validator";
-import { User } from "../../models/userModel";
+import { User } from "../../models/userModel.js";
 import bcrypt from "bcrypt";
 import Randomstring from "randomstring";
-import { sendMail } from "../../utils/mail";
+import { sendMail } from "../../utils/mail.js";
 
 const createUser = async (req, res) => {
   try {
@@ -20,10 +20,13 @@ const createUser = async (req, res) => {
         .status(400)
         .json({ success: true, msg: "user already exists" });
     }
-    const passowrd = Randomstring.generate(6);
-    const hashPassowrd = await bcrypt.hash(passowrd, 10);
+    const password = Randomstring.generate(6);
+    const hashPassowrd = await bcrypt.hash(password, 10);
 
-    let obj = { name, email, passowrd: hashPassowrd };
+    ///////////////////////
+    console.log(name, email, password);
+
+    let obj = { name, email, password: hashPassowrd };
     if (req.body.role && req.body.role == "admin") {
       return res
         .status(400)
