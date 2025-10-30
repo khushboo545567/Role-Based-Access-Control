@@ -80,6 +80,18 @@ const storeRoleValidator = () => {
     body("value").trim().notEmpty().withMessage("post id is required"),
   ];
 };
+
+const createUserValidator = () => {
+  return [
+    body("name")
+      .trim()
+      .notEmpty()
+      .withMessage("post id is required")
+      .length({ min: 3 })
+      .withMessage("name should be of min length 5"),
+    body("email").isEmail().withMessage("this should be email"),
+  ];
+};
 export {
   permissionAddValidator,
   permissionDeleteValidator,
@@ -91,4 +103,5 @@ export {
   postDeleteValidator,
   postUpdateValidator,
   storeRoleValidator,
+  createUserValidator,
 };

@@ -4,6 +4,7 @@ import {
   catogeryAddValidator,
   catogeryDeleteValidator,
   catogeryUpdateValidator,
+  createUserValidator,
   postCreateValidator,
   postDeleteValidator,
   postUpdateValidator,
@@ -40,4 +41,7 @@ router.route("/create-post").post(veryJWT, postCreateValidator(), createPost);
 router.route("/get-posts").get(veryJWT, getPosts);
 router.route("/delete-posts").post(veryJWT, postDeleteValidator(), deltePosts);
 router.route("/update-posts").post(veryJWT, postUpdateValidator(), updatePosts);
+
+// create user
+router.route("/create-user").post(veryJWT, createUserValidator, createUser);
 export default router;
